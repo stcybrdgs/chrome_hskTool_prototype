@@ -1,0 +1,830 @@
+﻿<! DOCTYPE html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />	
+	<link rel="stylesheet" href="bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="css/stylesheet.css">
+	<script>
+		function tts(x){
+			var msg = new SpeechSynthesisUtterance();
+
+			// console messages
+			msg.onerror = function(event){ console.log( 'An error has occurred: ' + event.error ); }
+			msg.onstart = function(event){ console.log('msg start: ' + document.getElementById(x.id).id); }
+			msg.onend = function(event){ console.log('msg ended: ' + document.getElementById(x.id).id); }
+			
+			//var voices = speechSynthesis.getVoices();
+			//msg.voice = voices[10]; // Note: some voices don't support altering params
+			msg.voiceURI = 'native';
+			msg.volume = 1; // 0 to 1
+			msg.rate = 0.8; // 0.1 to 10
+			msg.pitch = 0; //0 to 2
+			msg.text = document.getElementById(x.id).innerHTML;
+			msg.lang = 'zh-cmn';//'en-US';
+			console.log(msg.text);
+			speechSynthesis.speak(msg);
+		}
+
+		function updateModal(x){ 
+			var aName = document.getElementById(x.id).getAttribute("name"); 
+			if(  aName == "hskSentence" || aName == "vocabSentence") { 
+				var sentenceId = document.getElementById(x.id).innerHTML;
+				var sentenceContent= document.getElementById(sentenceId).innerHTML;
+				var titlePinyin = document.getElementById(x.id).getAttribute("title");
+				document.getElementById("titleGoesHere").innerHTML = "<a class='sentence' onclick='tts(this)' id='modalTitle' title=" + titlePinyin + ">" + sentenceId + "</a>";
+				document.getElementById("sentencesGoHere").innerHTML = sentenceContent;
+			}
+		}
+	</script>
+	<style>
+		a.vocabCategory{
+			text-decoration: none;
+		}
+		a.vocabCategory div:hover{
+			text-decoration: none;
+			background-color: rgb(228,228,228);
+		}
+	</style>
+</head>
+<body>
+	<audio id="audioPlayer">
+		<source id="audioPlayerSource" src="" type="audio/ogg">
+		Your browser does not support the audio element.
+	</audio>
+
+    <!-- SENTENCES MODAL -->
+    <div class="modal fade" id="sentences" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true"><i class="fa fa-times-circle"></i></span>
+                    </div>
+                    <p class="modal-title text-center" class="myModalLabel" id="titleGoesHere"></p>
+                </div>
+                <div class="modal-body text-left">
+                    <p id="sentencesGoHere">
+                    	<!-- sentences go here -->
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div><!-- end ABOUT modal -->
+
+	<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////// miscl -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseQuizlet" aria-expanded="false" aria-controls="collapseQuizlet" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="headQuizlet">
+			      	<span class="panel-title">
+			      		Quizlet
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapseQuizlet" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headQuizlet">
+		      	<div class="panel-body">
+		      		<span class="definition"></span>
+					<p></p>	
+						<a class="sentence" href="https://quizlet.com/157971197/hsk31-flash-cards/" target="_blank"　id="quizlet_0">HSK3第1课</a><br/>
+						<a class="sentence" href="https://quizlet.com/157970402/hsk301-flash-cards/" target="_blank"　id="quizlet_１">HSK3补汉字01</a><br/>
+						<a class="sentence" href="https://quizlet.com/157970456/hsk302-flash-cards/" target="_blank"　id="quizlet_2_1">HSK3补汉字02</a><br/>
+						<a class="sentence" href="https://quizlet.com/157971460/hsk32-flash-cards/" target="_blank"　id="quizlet_2_2">HSK3第2课</a><br/>
+						<a class="sentence" href="http://www.blcup.com/enknreader/Default.aspx?doi=10384&type=02" target="_blank"　id="hskBook">HSK3 Workbook Online</a><br/>
+		        </div>
+			</div>
+		</div>			
+
+	<!-- ////////////////////////////////////////////////////////////////////////////////////// HSK3 -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse0_2" aria-expanded="true" aria-controls="collapse0_2" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="head0_2">
+			      	<span class="panel-title">
+			      		HSK3
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapse0_2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head0_2">
+		      	<div class="panel-body">
+		      		<span class="definition"></span>
+					<p></p>		      		
+			        <a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_1" title="ban1&nbsp;-&nbsp;to&nbsp;carry" data-toggle="modal" data-target="#sentences">搬</a>
+			        <p class="sentenceContent" style="display:none;" id="搬">
+			        	<a class="sentence" onclick="tts(this)" id="0_2_1_1">你需要人帮忙搬这些重箱子吗？</a><br/>
+			        	<a class="sentence" onclick="tts(this)" id="0_2_1_2">搬运工人把箱子从房子里搬出来。</a><br/>
+			        	<a class="sentence" onclick="tts(this)" id="0_2_1_3">我刚搬了家。</a><br/>
+			        </p>
+			        <a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_2" title="xing4qu4&nbsp;-&nbsp;interest" data-toggle="modal" data-target="#sentences">兴趣</a>
+			        <p class="sentenceContent" style="display:none;" id="兴趣">
+				        <a class="sentence" onclick="tts(this)" id="0_2_2_1">我感兴趣。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_2_2">我不感兴趣。</a><br/>			        
+						<a class="sentence" onclick="tts(this)" id="0_2_2_3">我有兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_4">我没有兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_5">我一直都对汉语感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_6">他对瑜伽很感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_7">我对瑜伽不感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_8">我对吉他很有兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_9">我对这个话题没有兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_10">他没有兴趣去找麻烦。</a><br/>   
+						<a class="sentence" onclick="tts(this)" id="0_2_2_11">最近我对我的工作很不感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_12">我对这些不感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_13">我对我们的关系很感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_14">为什么你对我的工作有这么多兴趣？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_15">我不知道为什么我最近对我的工作没有兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_16">这些是我感兴趣的故事。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_17">汉语，吉他，电脑，这些是我感兴趣的话题。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_18">你的兴趣是什么？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_19">人们的兴趣极大。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_20">为什么你一下子有兴趣？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_21">我以为你没有兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_22">我要在那个公司工作，可是我觉得他们对我不感兴趣。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_2_23">我对这种电视节目没有兴趣。</a><br/>
+			        </p>	
+			       	<a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_3" title="pian2yi5&nbsp;-&nbsp;inexpensive" data-toggle="modal" data-target="#sentences">便宜</a>
+			        <p class="sentenceContent" style="display:none;" id="便宜">
+				        <a class="sentence" onclick="tts(this)" id="0_2_3_1">这些比那些便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_2">天天电脑变得更好也更便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_3">他买这辆自行车非常便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_4">他们非常便宜地买了这座房子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_5">他们卖得东西很便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_6">我不知道为什么他们卖得东西这么便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_7">我听说目前他们的航班非常便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_8">在那儿的价格都非常便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_9">这些白袜子很便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_10">汽车票的价格常常便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_11">那个超市的食物比较便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_12">我决定买一个很便宜的手机。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_13">贵或者便宜，对我来说都是一样的。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_14">这真的是一个便宜货。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_15">这是最便宜的吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_16">我买得非常便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_17">当然越便宜越好。</a><br/>  
+						<a class="sentence" onclick="tts(this)" id="0_2_3_18">那双鞋子很便宜。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_19">还有更便宜的票吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_20">我需要找到一本更便宜的书。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_21">最便宜的票多少钱？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_22">我没有很多钱，所以我需要找到一张更便宜的票。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_23">我觉得这是他们最便宜的价格了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_24">新汽车没有便宜的。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_25">这个牌子比那个便宜多了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_3_26">他们的饭菜又好吃又便宜。</a><br/>			        	
+			        </p>				  
+	        		<a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_4" title="bian4de5&nbsp;-&nbsp;become" data-toggle="modal" data-target="#sentences">变得</a>
+			        <p class="sentenceContent" style="display:none;" id="变得">
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_0">我感到我说汉语的能力天天变得越来越更好。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_1">他们的价格变得非常高。</a><br/>
+				       	<a class="sentence" onclick="tts(this)" id="0_2_4_2"> 我不知道为什么他们的价格最近变得这么高。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_3">我想要变得成功。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_4">我想要变得成功，可是我先需要一个好的工作。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_5">天空在变得阴，可能下雨。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_6">他离开的时候，房子变的很安静。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_7">晚上来了的时候，公园变的很安静。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_4_8">要是我找到一个好的工作，我相信生活会变的更好。</a><br/>	        	
+			        </p>	      
+	        		<a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_5" title="yin1&nbsp;-&nbsp;cloudy" data-toggle="modal" data-target="#sentences">阴</a>
+				    <p class="sentenceContent" style="display:none;" id="阴">
+	        			<a class="sentence" onclick="tts(this)" id="0_2_5_0">今天下午，天气变得阴了。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_5_1">今天早上，天气阴了。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_5_2">今天早上天气这么阴，我决定了不去海边。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_5_3">外面天很阴。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_5_4">昨天下午又冷又阴。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_5_5">天气有点阴, 可能下雨。</a><br/>
+			        </p>		
+			        <a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_6" title="cheng2ji4&nbsp;-&nbsp;grade;&nbsp;achievement" data-toggle="modal" data-target="#sentences">成绩</a>
+				    <p class="sentenceContent" style="display:none;" id="成绩">
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_0">他的学习成绩很好。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_1">他的学习成绩不太好。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_2">他的学习成绩一直很差。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_3">成绩是他主要的目的。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_4">这两个人成绩一样好。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_5">我们的成绩一样好。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_6">上个学期你的成绩怎么样？</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_7">你的工作成绩很好。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_8">她儿子学校的成绩一直很差。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_6_9">我需要更好的成绩。</a><br/>
+			        </p>	
+			        <a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_7" title="chi2dao4&nbsp;-&nbsp;to&nbsp;be&nbsp;late" data-toggle="modal" data-target="#sentences">迟到</a>
+				    <p class="sentenceContent" style="display:none;" id="迟到">
+						<a class="sentence" onclick="tts(this)" id="0_2_7_0">我迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_1">我要迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_2">我不想要迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_3">我不会迟到。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_4">对不起，我迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_5">他总是迟到。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_6">你为什么迟到了？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_7">请你不要迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_8">我迟到了十分钟。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_9">他迟到了一小时。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_10">他迟到了半个小时。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_11">快一点儿，要不然我们就迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_12">我需要走得更快，要不然我会迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_13">为什么你再上班迟到了？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_14">她非常生气因为他又迟到了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="0_2_7_15">我昨天早上上班一点迟到，所以我的老板对我变得一点生气。</a><br/>
+			        </p>	
+			        <a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_8" title="duan4lian4&nbsp;-&nbsp;to&nbsp;work&nbsp;out" data-toggle="modal" data-target="#sentences">锻炼</a>
+				    <p class="sentenceContent" style="display:none;" id="锻炼">
+				        <a class="sentence" onclick="tts(this)" id="0_2_8_0">我需要做了一些锻炼。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_8_1">他每天早上上课以前锻炼。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_8_2">有时候他去健身房锻炼。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_8_3">每天的锻炼非常重要。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_8_4">我有时候锻炼，可是我觉得每天是太常。</a><br/>				    	
+			        </p>
+			       	<a class="sentence spacer" name="hskSentence" onclick="tts(this), updateModal(this)" id="0_2_9" title="fa1shao1&nbsp;-&nbsp;have&nbsp;a&nbsp;fever" data-toggle="modal" data-target="#sentences">发烧</a>
+				    <p class="sentenceContent" style="display:none;" id="发烧">
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_0">你发烧吗？</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_1">您发冷还是发烧？</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_2">我发烧，我难受了！</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_3">我好像发烧了。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_4">他发烧。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_5">他有点发烧。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_6">他昨晚上发烧了。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_7">他刚才开始发烧了。</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="0_2_9_8">上个周末我发烧很严重。</a><br/>
+			        </p>
+		    	</div>
+			</div>
+		</div>
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////// 盲人国 -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse8" aria-expanded="false" aria-controls="collapse8" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="head8">
+			      	<span class="panel-title">
+			      		盲人国
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapse8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head8">
+		      	<div class="panel-body">
+		      		<span class="definition">The Country of the Blind</span>
+					<p></p>		      		
+			        <a class="sentence" onclick="tts(this)" id="8_0">在贵州的大山里，有一个漂亮的地方。</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_1">人们听说过那里，</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_2">但是从来没有去过，</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_3">所以他们很想知道那个地方的样子。</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_4">听说，有一条路可以去那个地方，但是很难。</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_5">如果要去那里，人们需要走过几个大山，</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_6">然后走过一个长长的山洞。</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_7">后来，二三十个人带着孩子，一些吃的，和他们所有的钱，</a>
+			        <a class="sentence" onclick="tts(this)" id="8_0_8">走了一个月，真的到了那里。</a>
+					<a class="sentence" onclick="tts(this)" id="8_0_9">那是个漂亮的地方，
+					<a class="sentence" onclick="tts(this)" id="8_0_10">这几十个人到了那里以后，</a>
+					<a class="sentence" onclick="tts(this)" id="8_0_11">就一直生活在那里，</a>
+					<a class="sentence" onclick="tts(this)" id="8_0_12">他们都很开心。</a><br/>
+		        </div>
+			</div>
+		</div>			
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////// 在浴室 -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse9" aria-expanded="false" aria-controls="collapse9" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="head9">
+			      	<span class="panel-title">
+			      		Bathroom
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapse9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="head9">
+		      	<div class="panel-body">
+		      		<span class="definition"></span>
+					<p></p>	
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="9_0" title="yu4shi4&nbsp;-&nbsp;bathroom" data-toggle="modal" data-target="#sentences">浴室</a>
+				    <p class="sentenceContent" style="display:none;" id="浴室">
+				        <a class="sentence" onclick="tts(this)" id="9_0_1">我的卧室在大门和浴室之间</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="9_0_2">她的新房有3个卧室和两个浴室。</a><br/>		
+				        <a class="sentence" onclick="tts(this)" id="9_0_3">他现在在浴室。</a><br/>	
+						<a class="sentence" onclick="tts(this)" id="9_0_4">我的新公寓有两间卧室，一间客厅，两间浴室和一间厨房。</a><br/>	
+						<a class="sentence" onclick="tts(this)" id="9_0_5">来浴室吧。</a><br/>	
+						<a class="sentence" onclick="tts(this)" id="9_0_6">我的公寓有两个浴室，可是我只用一个。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="9_0_7">为什么这间浴室总是这么脏？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="9_0_8">我需要用你的浴室。</a><br/>
+			        </p>			        
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="9_2" title="xi3shou3pen2&nbsp;-&nbsp;sink" data-toggle="modal" data-target="#sentences">洗手盆</a>
+			        <p class="sentenceContent" style="display:none;" id="洗手盆">
+				        <a class="sentence" onclick="tts(this)" id="9_2_1">洗手盆 Sentence One.</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="9_2_2">洗手盆Sentence Two.</a><br/>				        
+			        </p>				        
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="9_3" title="lin2yu4&nbsp;-&nbsp;shower" data-toggle="modal" data-target="#sentences">淋浴</a>
+			        <p class="sentenceContent" style="display:none;" id="淋浴">
+				        <a class="sentence" onclick="tts(this)" id="9_3_1">淋浴 Sentence One.</a><br/>
+				        <a class="sentence" onclick="tts(this)" id="9_3_2">淋浴 Sentence Two.</a><br/>				        
+			        </p>	
+		        </div>
+			</div>
+		</div>	
+
+
+	
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////  -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_Bedroom" aria-expanded="false" aria-controls="collapse_Bedroom" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="panel_Bedroom">
+			      	<span class="panel-title">
+			      		Bedroom
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapse_Bedroom" class="panel-collapse collapse" role="tabpanel" aria-labelledby="panel_Bedroom">
+		      	<div class="panel-body">
+		      		<span class="definition"></span>
+					<p></p>	
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="Bedroom_0" title="wo4shi4&nbsp;-&nbsp;bedroom" data-toggle="modal" data-target="#sentences">卧室</a>
+				    <p class="sentenceContent" style="display:none;" id="卧室">
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_1">我的卧室面向北。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_2">我们把沙发搬到了卧室。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_3">他女儿的卧室有很多很好的东西。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_4">床单在我卧室的一个木箱子里。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_5">我的卧室在大门和浴室之间。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_6">我有两只狗，所以我卧室的地毯总是很脏。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_7">你的夹克在我卧室里的椅子上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_8">我的狗在我卧室里的床上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_9">首先，你可以每天把你的卧室打扫干净！</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_10">别忘了把你的卧室打扫干净。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_11">我好朋友给了我一幅绘画，所以我把它挂在我卧室的墙上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_0_12">从我卧室的窗户可以看到湖边。</a><br/>
+			        </p>			 
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="Bedroom_1" title="yi3zi5&nbsp;-&nbsp;chair" data-toggle="modal" data-target="#sentences">椅子</a>			
+				    <p class="sentenceContent" style="display:none;" id="椅子">		
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_0">我需要一把椅子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_1">为什么我们的客人都没有椅子？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_2">这间卧室里有两把旧红色的椅子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_3">我正在坐在卧室的椅子上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_4">他从椅子上站起来。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_5">我的大衣挂在我卧室的椅子上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_6">我觉得你的大衣还挂在我卧室的椅子上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_7">她把床边的椅子转向门口。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_8">这把椅子很好看，但是它不舒服。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_9">你的夹克在我卧室里的椅子上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_10">我正在坐在一把椅子，面向门口。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_11">别坐在那把椅子里。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_12">为什么你踢了我的椅子？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_13">这把椅子很结实。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_14">这张椅子下面的小地毯很可爱。  </a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_15">椅子是一件家具。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_16">他在椅子上坐下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_17">我要在卧室的椅子上坐下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_18">请你坐下。我只想要坐下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_1_19">请你站起来。我只想要站起来。</a><br/>
+					</p>	
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="Bedroom_2" title="chuang2&nbsp;-&nbsp;bed" data-toggle="modal" data-target="#sentences">床</a>
+			        <p class="sentenceContent" style="display:none;" id="床">		
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_0">这间单人牢房没有床。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_1">他需要一张床。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_2">他需要自己的床。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_3">我的床舒服极乐，所以早上我都不想起床。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_4">我的卧室只有四块家具：一张床，一张桌子，和两把椅子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_5">您要单人床还是双人床？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_6">你要小号的床还是中号的床?</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_7">我卧室里有一张很舒服的床。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_8">我的床有一个很舒服的床垫。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_9">这双床底下的鞋子不是我的。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_10">我需要把床搬到我的新公寓，可是它太重了，我不能一个人搬它了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_11">那个孩子喜欢躲在床底下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_12">我的狗常常在床底下睡觉。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_13">我的狗很喜欢在床睡觉息。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_14">我的狗爬到了床底下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_15">你的提包在床底下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_16">我找到了我的钱包在床上。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_17">在床旁边有一个小桌子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_18">台灯在床的旁边。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_19">你的鞋子在床底下，可是你的提包在床旁边。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_20">你在床下已经看了吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_21">我的鞋子在床底下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_2_22">我平常九点三刻上床。</a><br/>
+					</p>	
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_3" title="chuang1hu4&nbsp;-&nbsp;window" data-toggle="modal" data-target="#sentences">窗户</a>
+				    <p class="sentenceContent" style="display:none;" id="窗户">
+				        <a class="sentence" onclick="tts(this)" id="10_3_1">Sentence</a><br/>
+			        </p>  	     
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_4" title="chuang1 lian2&nbsp;-&nbsp;curtain" data-toggle="modal" data-target="#sentences">窗帘</a>
+				    <p class="sentenceContent" style="display:none;" id="窗帘">
+				        <a class="sentence" onclick="tts(this)" id="10_4_1">Sentence</a><br/>
+			        </p>  		
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_5" title="di4ban3&nbsp;-&nbsp;floor" data-toggle="modal" data-target="#sentences">地板</a>
+				    <p class="sentenceContent" style="display:none;" id="地板">
+				        <a class="sentence" onclick="tts(this)" id="10_5_1">Sentence</a><br/>
+			        </p> 			
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_6" title="di4tan3&nbsp;-&nbsp;carpet" data-toggle="modal" data-target="#sentences">地毯</a>
+				    <p class="sentenceContent" style="display:none;" id="地毯">
+				        <a class="sentence" onclick="tts(this)" id="10_6_1">Sentence</a><br/>
+			        </p> 		
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_7" title="qiang2&nbsp;-&nbsp;wall" data-toggle="modal" data-target="#sentences">墙</a>
+				    <p class="sentenceContent" style="display:none;" id="墙">
+				        <a class="sentence" onclick="tts(this)" id="10_7_1">Sentence</a><br/>
+			        </p> 		
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_8" title="yi1&nbsp;fu2&nbsp;hua4&nbsp;-&nbsp;a&nbsp;painting" data-toggle="modal" data-target="#sentences">一幅画</a>
+				    <p class="sentenceContent" style="display:none;" id="一幅画">
+				        <a class="sentence" onclick="tts(this)" id="10_8_1">Sentence</a><br/>
+			        </p> 
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_9" title="hui4hua4&nbsp;-&nbsp;painting (as an activity)" data-toggle="modal" data-target="#sentences">绘画</a>
+				    <p class="sentenceContent" style="display:none;" id="绘画">
+				        <a class="sentence" onclick="tts(this)" id="10_9_1">Sentence</a><br/>
+			        </p> 	
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_10" title="bi4chu2&nbsp;-&nbsp;closet&nbsp;(built-in&nbsp;closet&nbsp;or&nbsp;cabinet)" data-toggle="modal" data-target="#sentences">壁橱</a>
+				    <p class="sentenceContent" style="display:none;" id="壁橱">
+				        <a class="sentence" onclick="tts(this)" id="10_10_1">Sentence</a><br/>
+			        </p> 			        		        				        	        	
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_11" title="yi1gui4&nbsp;-&nbsp;wardrobe;&nbsp;armoire" data-toggle="modal" data-target="#sentences">衣柜</a>
+				    <p class="sentenceContent" style="display:none;" id="衣柜">
+				        <a class="sentence" onclick="tts(this)" id="10_11_1">Sentence</a><br/>
+			        </p> 		
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_12" title="tan3zi5&nbsp;-&nbsp;blanket" data-toggle="modal" data-target="#sentences">毯子</a>
+				    <p class="sentenceContent" style="display:none;" id="毯子">
+				        <a class="sentence" onclick="tts(this)" id="10_12_1">Sentence</a><br/>
+			        </p> 		
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_13" title="chuang2dan1&nbsp;-&nbsp;bedsheet" data-toggle="modal" data-target="#sentences">床单</a>
+				    <p class="sentenceContent" style="display:none;" id="床单">
+				        <a class="sentence" onclick="tts(this)" id="10_13_1">Sentence</a><br/>
+			        </p> 			
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_14" title="zhen3tou5&nbsp;-&nbsp;pillow" data-toggle="modal" data-target="#sentences">枕头</a>
+				    <p class="sentenceContent" style="display:none;" id="枕头">
+				        <a class="sentence" onclick="tts(this)" id="10_14_1">Sentence</a><br/>
+			        </p> 			        
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_15" title="zhen3tao4&nbsp;-&nbsp;pillow&nbsp;case" data-toggle="modal" data-target="#sentences">枕套</a>
+				    <p class="sentenceContent" style="display:none;" id="枕套">
+				        <a class="sentence" onclick="tts(this)" id="10_15_1">Sentence</a><br/>
+			        </p> 
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="Bedroom_16" title="zhuo1zi5&nbsp;-&nbsp;table" data-toggle="modal" data-target="#sentences">桌子</a>	
+				    <p class="sentenceContent" style="display:none;" id="桌子">		
+						<a class="sentence" onclick="tts(this)" id="Bedroom_16_0">在我卧室的桌子下面有两个鞋子。</a><br/>
+					</p>	
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_17" title="deng1&nbsp;-&nbsp;lamp" data-toggle="modal" data-target="#sentences">灯</a>
+					<p class="sentenceContent" style="display:none;" id="灯">
+						<a class="sentence" onclick="tts(this)" id="10_17_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_18" title="shi2zhong1&nbsp;-&nbsp;clock" data-toggle="modal" data-target="#sentences">时钟</a>
+					<p class="sentenceContent" style="display:none;" id="时钟">
+						<a class="sentence" onclick="tts(this)" id="10_18_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_19" title="gua4zhong1&nbsp;-&nbsp;wall&nbsp;clock" data-toggle="modal" data-target="#sentences">挂钟</a>
+					<p class="sentenceContent" style="display:none;" id="挂钟">
+						<a class="sentence" onclick="tts(this)" id="10_19_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_20" title="nao4zhong1&nbsp;-&nbsp;alarm&nbsp;clock" data-toggle="modal" data-target="#sentences">闹钟</a>
+					<p class="sentenceContent" style="display:none;" id="闹钟">
+						<a class="sentence spacer" onclick="tts(this)" id="10_20_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_21" title="diao4shan4&nbsp;-&nbsp;ceiling&nbsp;fan" data-toggle="modal" data-target="#sentences">吊扇</a>
+					<p class="sentenceContent" style="display:none;" id="吊扇">
+						<a class="sentence spacer" onclick="tts(this)" id="10_21_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_22" title="shu1zhuang1&nbsp;tai2&nbsp;-&nbsp;dresser" data-toggle="modal" data-target="#sentences">梳妆台</a>
+					<p class="sentenceContent" style="display:none;" id="梳妆台">
+						<a class="sentence" onclick="tts(this)" id="10_22_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_23" title="chuang2&nbsp;dian4&nbsp;-&nbsp;mattress" data-toggle="modal" data-target="#sentences">床垫</a>
+					<p class="sentenceContent" style="display:none;" id="床垫">
+						<a class="sentence" onclick="tts(this)" id="10_23_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_24" title="deng1&nbsp;kai1guan1&nbsp;-&nbsp;light&nbsp;switch" data-toggle="modal" data-target="#sentences">灯开关</a>
+					<p class="sentenceContent" style="display:none;" id="灯开关">
+						<a class="sentence" onclick="tts(this)" id="10_24_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_25" title="shuang1&nbsp;ceng2&nbsp;chuang2&nbsp;-&nbsp;bunk&nbsp;bed" data-toggle="modal" data-target="#sentences">双层床</a>
+					<p class="sentenceContent" style="display:none;" id="双层床">
+						<a class="sentence" onclick="tts(this)" id="10_25_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_26" title="deng1pao4&nbsp;-&nbsp;light&nbsp;bulb" data-toggle="modal" data-target="#sentences">灯泡</a>
+					<p class="sentenceContent" style="display:none;" id="灯泡">
+						<a class="sentence" onclick="tts(this)" id="10_26_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_27" title="la4zhu2&nbsp;-&nbsp;candle" data-toggle="modal" data-target="#sentences">蜡烛</a>
+					<p class="sentenceContent" style="display:none;" id="蜡烛">
+						<a class="sentence" onclick="tts(this)" id="10_27_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_28" title="huo3yan4&nbsp;-&nbsp;flame" data-toggle="modal" data-target="#sentences">火焰</a>
+					<p class="sentenceContent" style="display:none;" id="火焰">
+						<a class="sentence" onclick="tts(this)" id="10_28_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_29" title="zhu2tai2&nbsp;-&nbsp;candlestick" data-toggle="modal" data-target="#sentences">烛台</a>
+					<p class="sentenceContent" style="display:none;" id="烛台">
+						<a class="sentence" onclick="tts(this)" id="10_29_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_30" title="shu1jia4&nbsp;-&nbsp;bookshelf" data-toggle="modal" data-target="#sentences">书架</a>
+					<p class="sentenceContent" style="display:none;" id="书架">
+						<a class="sentence" onclick="tts(this)" id="10_30_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_31" title="la1ji1tong3&nbsp;-&nbsp;trashcan" data-toggle="modal" data-target="#sentences">垃圾桶</a>
+					<p class="sentenceContent" style="display:none;" id="垃圾桶">
+						<a class="sentence" onclick="tts(this)" id="10_31_1">Sentence</a><br/>
+					</p>
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_32" title="wan2ju4&nbsp;-&nbsp;toy" data-toggle="modal" data-target="#sentences">玩具</a>
+					<p class="sentenceContent" style="display:none;" id="玩具">
+						<a class="sentence" onclick="tts(this)" id="10_32_1">Sentence</a><br/>
+					</p>
+			        <a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="Bedroom_32" title="jing4zi5&nbsp;-&nbsp;mirror" data-toggle="modal" data-target="#sentences">镜子</a>			
+				    <p class="sentenceContent" style="display:none;" id="镜子">		
+						<a class="sentence" onclick="tts(this)" id="Bedroom_32_0">我在镜子里看见了我自己的脸。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_32_1">我需要买一个新镜子因为我的镜子太小了</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_32_2">请你给我拿一个镜子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_32_3">我想要看见我自己的脸，可是我没有一个镜子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_32_4">我的卧室有一个小红色的镜子。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Bedroom_32_5">我需要把镜子挂在我卧室的墙上。</a><br/>
+					</p>	
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_33" title="qian2bao1&nbsp;-&nbsp;wallet" data-toggle="modal" data-target="#sentences">钱包</a>
+					<p class="sentenceContent" style="display:none;" id="钱包">
+						<a class="sentence" onclick="tts(this)" id="10_33_1">Sentence</a><br/>
+					</p>		
+					<a class="sentence spacer" name="vocabSentence" onclick="tts(this), updateModal(this)" id="10_34" title="yao4shi5&nbsp;-&nbsp;keys" data-toggle="modal" data-target="#sentences">钥匙</a>
+					<p class="sentenceContent" style="display:none;" id="钥匙">
+						<a class="sentence" onclick="tts(this)" id="10_34_1">Sentence</a><br/>
+					</p>									
+		        </div>
+			</div>
+		</div>			
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////// zero to hero -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseHero" aria-expanded="false" aria-controls="collapseHero" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="headHero">
+			      	<span class="panel-title">
+			      		Zero to Hero
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapseHero" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headHero">
+		      	<div class="panel-body">
+		      		<span class="definition"></span>
+					<p></p>	
+			        <a class="sentence" name="vocabSentence" onclick="updateModal(this)" id="hero_0" title="not&nbsp;at&nbsp;all" data-toggle="modal" data-target="#sentences">一点儿也/都不</a><br/>		
+			        <p class="sentenceContent" style="display:none;" id="一点儿也/都不">		
+						<a class="sentence" onclick="tts(this)" id="hero_0_0">南方一点儿都不冷。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_1">那个地方一点儿也不远。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_2">我一点儿也不着急。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_3">你怎么一点儿都不着急？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_4">他一点儿也不着急。他一点儿都不着急。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_5">我一点儿也不冷。我一点儿都不冷。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_6">我一点儿也不累。我一点儿都不累。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_0_7">这件衣服真便宜，一点儿都不贵。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="updateModal(this)" id="hero_1" title="not&nbsp;anything/not&nbsp;at&nbsp;all" data-toggle="modal" data-target="#sentences">一点儿+N+也/都+不+V</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="一点儿+N+也/都+不+V">		
+						<a class="sentence" onclick="tts(this)" id="hero_1_0">我一点儿东西也不想吃。我一点儿东西都不想吃。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_1_1">这个星期我很忙，一点儿时间也没有。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_1_2">今天早上我一点儿咖啡都没喝。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_1_3">我一点儿东西也不想吃。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="updateModal(this)" id="hero_2" title="&nbsp;&nbsp;not&nbsp;at&nbsp;,&nbsp;not&nbsp;any" data-toggle="modal" data-target="#sentences">—+M+N+也/都+不+V</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="—+M+N+也/都+不+V">		
+						<a class="sentence" onclick="tts(this)" id="hero_2_0">今天早上我一杯咖啡都没喝。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_1">这个星期我很忙，一分钟时间也没有。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_2">我一个苹果也不想吃。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_3">昨天她一件衣服都没买。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_4">我的朋友一杯茶也没喝。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_5">手机，电脑，地图，一个也不能少带。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_6">你怎么一个汉字都不认识？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_7">我一句话也没说。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_8">我一句话也不想说。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_9">这些汉字太难了，我一个都不认识。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_10">我没带钱，我一件衣服都没买。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_2_11">我需要所有学生，一个都不能少。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_3" title="na4&nbsp;-&nbsp;then,&nbsp;so&nbsp;then" data-toggle="modal" data-target="#sentences">那</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="那">		
+						<a class="sentence" onclick="tts(this)" id="hero_3_0">你不想去看电影。那我也不去了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_3_1">我一个苹果也不想吃了。那你喝些茶把。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_4" title="zhi1qian2&nbsp;-&nbsp;before;&nbsp;prior&nbsp;to" data-toggle="modal" data-target="#sentences">之前</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="之前">		
+						<a class="sentence" onclick="tts(this)" id="hero_4_0">这药在睡觉之前吃。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_4_1">两星期之前,他还在这儿。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_5" title="wan2cheng2&nbsp;-&nbsp;to&nbsp;complete;&nbsp;to accomplish" data-toggle="modal" data-target="#sentences">完成</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="完成">		
+						<a class="sentence" onclick="tts(this)" id="hero_5_0">他的作业已经完成了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_1">你完成了吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_2">我已经完成了报告。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_3">我已经完成了，你呢？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_4">我们终于完成了！</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_5">工作明天应该完成了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_6">我们可以很快地完成工作。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_7">我花了三小时天完成。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_8">我花了十天完成。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_9">我们必须完成厨房的清理。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_5_10">我们必须完成打扫厨房。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_６" title="bian4&nbsp;-&nbsp;(for&nbsp;actions)&nbsp;once&nbsp;through;&nbsp;a&nbsp;time" data-toggle="modal" data-target="#sentences">遍</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="遍">		
+						<a class="sentence" onclick="tts(this)" id="hero_６_0">没个词我说两遍。</a><br/>
+					</p>	
+					<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_8" title="teng2&nbsp;-&nbsp;it&nbsp;hurts" data-toggle="modal" data-target="#sentences">疼</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="疼">		
+						<a class="sentence" onclick="tts(this)" id="hero_8_0">哎呀，好疼啊。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_8_1">你的头就那么疼吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_8_2">我觉得难受，我的牙很疼。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_8_3">我这两天一直发烧，头很疼。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_9" title="shou4&nbsp;-&nbsp;thin" data-toggle="modal" data-target="#sentences">瘦</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="瘦">		
+						<a class="sentence" onclick="tts(this)" id="hero_9_0">他怎么样？他很瘦。</a><br/>
+					</p>	
+					<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_10" title="pang4&nbsp;-&nbsp;fat" data-toggle="modal" data-target="#sentences">胖</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="胖">		
+						<a class="sentence" onclick="tts(this)" id="hero_10_0">这个人瘦吗？他不瘦，他很胖。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_11" title="na2&nbsp;-&nbsp;take" data-toggle="modal" data-target="#sentences">拿</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="拿">		
+						<a class="sentence" onclick="tts(this)" id="hero_11_0">Sentence 1</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_12" title="rong2yi4&nbsp;-&nbsp;easy" data-toggle="modal" data-target="#sentences">容易</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="容易">		
+						<a class="sentence" onclick="tts(this)" id="hero_12_0">一，二，三。。。容易吗？很容易。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_13" title="nan2&nbsp;-&nbsp;difficult" data-toggle="modal" data-target="#sentences">难</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="难">		
+						<a class="sentence" onclick="tts(this)" id="hero_13_0">在这里停车容易吗？不容易，很难。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_14" title="ting2che1&nbsp;-&nbsp;parking" data-toggle="modal" data-target="#sentences">停车</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="停车">		
+						<a class="sentence" onclick="tts(this)" id="hero_14_0">在这个站我要停车十分钟。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_15" title="ba3&nbsp;-&nbsp;m.&nbsp;word&nbsp;for&nbsp;things&nbsp;with&nbsp;handles" data-toggle="modal" data-target="#sentences">把</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="把">		
+						<a class="sentence" onclick="tts(this)" id="hero_15_0">这是一把伞。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_15_1">你家里有几把伞？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_15_2">我也只有一把伞。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_16" title="san3&nbsp;-&nbsp;umbrella" data-toggle="modal" data-target="#sentences">伞</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="伞">		
+						<a class="sentence" onclick="tts(this)" id="hero_16_0">Sentence 1</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_16_1">Sentence 2</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_17" title="ge1shou3&nbsp;-&nbsp;singer" data-toggle="modal" data-target="#sentences">歌手</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="歌手">		
+						<a class="sentence" onclick="tts(this)" id="hero_17_0">他是一个很有名的歌手。</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_18" title="zhou1&nbsp;-&nbsp;week" data-toggle="modal" data-target="#sentences">周</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="周">		
+						<a class="sentence" onclick="tts(this)" id="hero_18_0">很多中国人都姓周。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_18_1">周杰伦是一个很有名的台湾歌手。（他英文名教Jay Chou，你可能听说过).</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_19" title="rao4kou3ling4&nbsp;-&nbsp;tongue&nbsp;twister" data-toggle="modal" data-target="#sentences">绕口令</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="绕口令">		
+						<a class="sentence" onclick="tts(this)" id="hero_19_0">你喜欢绕口令吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_19_1">你看，我绕口令比你说的好吧？</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="updateModal(this)" id="hero_20" title="as&nbsp;soon&nbsp;as" data-toggle="modal" data-target="#sentences">successive actions with 了。。。就 (V + 了就 + V)</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="successive actions with 了。。。就 (V + 了就 + V)">		
+						<a class="sentence" onclick="tts(this)" id="hero_20_0">我下了课就吃饭。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_1">妈妈起了床就做早饭。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_2">整天吃了就睡，睡了就吃。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_3"></a>他回到了办公室我就告诉他。<br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_4">你下了课我们就去书店。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_5">他吃了就睡。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_6">他睡了就吃。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_7">他吃了就喝。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_8">他喝了就去洗手间。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_9">去了洗手间就回来又吃。</a><br/>		
+						<a class="sentence" onclick="tts(this)" id="hero_20_10">爸爸回来了我们就吃饭。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_20_11">他来了我就去。</a><br/>
+		        	</p>
+		        	<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_21" title="jiao3&nbsp;-&nbsp;foot" data-toggle="modal" data-target="#sentences">脚</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="脚">		
+						<a class="sentence" onclick="tts(this)" id="hero_21_0">Sentence One</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_21_1">Sentence Two</a><br/>
+					</p>
+					<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_22" title="tui3&nbsp;-&nbsp;leg" data-toggle="modal" data-target="#sentences">腿</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="腿">		
+						<a class="sentence" onclick="tts(this)" id="hero_22_0">你有几条腿？两条腿。我们都有两条腿。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_22_1">Sentence Two</a><br/>
+					</p>	
+					<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_23" title="shu4&nbsp;-&nbsp;tree" data-toggle="modal" data-target="#sentences">树</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="树">		
+						<a class="sentence" onclick="tts(this)" id="hero_23_0">Sentence One</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_23_1">Sentence Two</a><br/>
+					</p>	
+					<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_24" title="liang4&nbsp;-&nbsp;m.word&nbsp;for&nbsp;vehicles" data-toggle="modal" data-target="#sentences">辆</a><br/>	
+				    <p class="sentenceContent" style="display:none;" id="树">		
+						<a class="sentence" onclick="tts(this)" id="hero_24_0">Sentence One</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_24_1">Sentence Two</a><br/>
+					</p>			
+				    <p class="sentenceContent" style="display:none;" id="辆">		
+						<a class="sentence" onclick="tts(this)" id="hero_25_0">你有几辆车？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_25_1">Sentence Two</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_25" title="qi2shi2&nbsp;-&nbsp;actually" data-toggle="modal" data-target="#sentences">其实</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="其实">		
+						<a class="sentence" onclick="tts(this)" id="hero_26_0">Sentence One</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_26_1">Sentence Two</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_26" title="lou2&nbsp;-&nbsp;actually" data-toggle="modal" data-target="#sentences">楼</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="楼">		
+						<a class="sentence" onclick="tts(this)" id="hero_27_0">这是一座楼。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_27_1">我上楼的时候，我向天空走。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_27_2">我下楼的时候，我向地板走。</a><br/>
+					</p>	
+					<a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_28" title="jing1li4&nbsp;-&nbsp;experience" data-toggle="modal" data-target="#sentences">经历</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="经历">		
+						<a class="sentence" onclick="tts(this)" id="hero_28_0">你有工作吗？那你就有工作的经历。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_28_1">Sentence Two</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_29" title="ban4gong1shi4&nbsp;-&nbsp;office" data-toggle="modal" data-target="#sentences">办公室</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="办公室">		
+						<a class="sentence" onclick="tts(this)" id="hero_29_0">你在哪里工作？我在一间办公室工作。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_29_1">Sentence Two</a><br/>
+					</p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="hero_30" title="huai4&nbsp;-&nbsp;bad" data-toggle="modal" data-target="#sentences">坏</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="坏">		
+						<a class="sentence" onclick="tts(this)" id="hero_30_0">我以前以为他是一个很好的人，可是现在我知道他其实是一个很坏的人。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="hero_30_1">Sentence Two</a><br/>
+					</p>	
+				</div>
+			</div>
+		</div>	
+
+<!-- //////////////////////////////////////////////////////////////////////////////////////  	Basic_Patterns	-->				
+		<div class="panel panel-default">				
+			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse_Basic_Patterns" aria-expanded="false" aria-controls="collapse_Basic_Patterns" class="collapsed vocabWord">			
+			    <div class="panel-heading" role="tab" id="panel_Basic_Patterns">			
+					<span class="panel-title">	
+						Basic_Patterns
+					</span>	
+			    </div>			
+			</a>			
+		    <div id="collapse_Basic_Patterns" class="panel-collapse collapse" role="tabpanel" aria-labelledby="panel_Basic_Patterns">				
+				<div class="panel-body">		
+					<span class="definition"></span>	
+					<p></p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="Basic_Patterns_0" title="" data-toggle="modal" data-target="#sentences">Chapter One</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="Chapter One">		
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_0">我父亲是中国人。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_1">我父亲是中国人。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_2">我父亲是中国人。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_3">我父亲是中国人。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_4">我感冒了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_5">天气很凉快 。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_6">天气很凉快 。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_7">那辆车真酷！</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_8">我到飞机场去接我的朋友。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_9">我到银行去取钱。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_10">我们昨天下午一点钟在麦当劳吃了午饭。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_11">我们星期六晚上在那个电影院看了一个中国电影。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_12">我在家里吃晚饭。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_13">我八点钟起床。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_14">我八点半吃早饭。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_15">1949年10月1日，星期六。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_16">我睡了八个钟头 。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_17">昨天我念了五个钟头的书。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_18">昨天我念书念了五个钟头。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_19">我念了五个钟头。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_20">我两天没睡觉了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_21">我一年没吸烟了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_22">你为什么学中文？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="Basic_Patterns_0_23">她为什么没上课？</a><br/>
+					</p>	
+		        </div>
+			</div>
+		</div>						
+
+<!-- ////////////////////////////////////////////////////////////////////////////////////// miscl -->
+  		<div class="panel panel-default">
+  			<a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseMiscl" aria-expanded="false" aria-controls="collapseHero" class="collapsed vocabCategory">
+			    <div class="panel-heading" role="tab" id="headMiscl">
+			      	<span class="panel-title">
+			      		Miscl
+			    	</span>
+			    </div>
+			</a>
+		    <div id="collapseMiscl" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headMiscl">
+		      	<div class="panel-body">
+		      		<span class="definition"></span>
+					<p></p>	
+			        <a class="sentence" name="vocabSentence" onclick="tts(this), updateModal(this)" id="miscl_0" title="za2xiang4&nbsp;-&nbsp;miscellaneous" data-toggle="modal" data-target="#sentences">杂项</a><br/>			
+				    <p class="sentenceContent" style="display:none;" id="杂项">		
+						<a class="sentence" onclick="tts(this)" id="miscl_0_0">我们在一起看看我们的故事。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_1">上个视频我们谈了“一个都不”，“一点儿都不.” 在这下个视频里我们在谈谈第三个“grammar point": 那。“那”是什么意思呢？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_2">现在我们第一课已经上完了。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_３">请拿出你的笔和纸。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_4">我们会听十个词。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_5">没个词我说两遍。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_6">我希望今年我汉语的水平成为更高一点儿。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_7">我们一起看吧。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_8">我先看书，一小时后我睡觉。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_9">大家明白故事的内容吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_10">现在我们会看几个生词。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_11">好，现在我们复习以下。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_12">非常好！</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_13">在下个视频里我们会看看一些生词。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_14">你可能听说过。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_15">你明白怎么做这个练习了吗？</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_16">我们看看的时候，请你想一想。过一会儿我们可以谈谈。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_17">为什么你带来了一把伞啊？因为外面下雨。</a><br/>
+						<a class="sentence" onclick="tts(this)" id="miscl_0_18">你有几条腿？两条腿。我们都有两条腿。</a><br/>
+					</p>	
+		        </div>
+			</div>
+		</div>			
+
+
+  	</div><!--  end panel-group -->
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="bootstrap/bootstrap.min.js"></script>
+    <!-- enable popovers-->
+	<script>$(document).ready(function(){ $('[data-toggle = "popover"]').popover(); });</script>   
+</body>
+</html>	
